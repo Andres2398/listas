@@ -1,13 +1,22 @@
 package lista6Version;
 
-import lista5Version.Tupla3Objetos;
+
 
 public class Cabecera3 {
 	Tupla3ObjetosCircular primero;
+	int tamano=0;
 
 	public Cabecera3(Tupla3ObjetosCircular primero) {
 
 		this.primero = primero;
+	}
+
+	public int getTamano() {
+		return tamano;
+	}
+
+	public void setTamano(int tamano) {
+		this.tamano = tamano;
 	}
 
 	public Tupla3ObjetosCircular getPrimero() {

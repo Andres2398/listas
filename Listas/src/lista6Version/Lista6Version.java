@@ -14,42 +14,33 @@ public class Lista6Version {
 		Tupla3ObjetosCircular tupla = new Tupla3ObjetosCircular(elemento);
 
 		if (cabecera == null) {
+
 			cabecera = new Cabecera3(tupla);
+			tupla.setSiguienteElemento(tupla);
 			tupla.setPosicionAnterior(tupla);
-
 		} else {
-			Tupla3ObjetosCircular actual = cabecera.getPrimero();
 
-			while (actual.getSiguienteElemento() != null) {
+			Tupla3ObjetosCircular ultimo = cabecera.getPrimero().getPosicionAnterior();
 
-				actual = actual.getSiguienteElemento();
-
-			}
-			actual.setSiguienteElemento(tupla);
-			tupla.setPosicionAnterior(actual);
+			ultimo.setSiguienteElemento(tupla);
+			tupla.setPosicionAnterior(ultimo);
 			tupla.setSiguienteElemento(cabecera.getPrimero());
-			cabecera.getPrimero().setSiguienteElemento(tupla);
+			cabecera.getPrimero().setPosicionAnterior(tupla);
 		}
 
+		cabecera.setTamano(cabecera.getTamano() + 1);
 	}
 
 	public void mostrar() {
-		Tupla3ObjetosCircular mostrar = cabecera.getPrimero();
-		while (mostrar.getSiguienteElemento() != null) {
-			if (mostrar.getPosicionAnterior() != null) {
-				System.out.println("Elemento " + mostrar.getElemento() + " Elemento anterior "
-						+ mostrar.getPosicionAnterior().getElemento() + " Elemento Siguiente "
-						+ mostrar.getSiguienteElemento().getElemento());
 
-//			} else {
-//				System.out.println("Elemento " + mostrar.getElemento() + " Elemento anterior es null"
-//						+ " Elemento Siguiente " + mostrar.getSiguienteElemento().getElemento());
-//			}
-//			mostrar = mostrar.getSiguienteElemento();
-		}}
-//		System.out.println("Elemento " + mostrar.getElemento() + " Elemento anterior "
-//				+ mostrar.getPosicionAnterior().getElemento() + " Elemento Siguiente es null");
-//
+		Tupla3ObjetosCircular actual = cabecera.getPrimero();
+		do {
+			System.out.println(
+					"Elemento: " + actual.getElemento() + " | Anterior: " + actual.getPosicionAnterior().getElemento()
+							+ " | Siguiente: " + actual.getSiguienteElemento().getElemento());
+
+			actual = actual.getSiguienteElemento();
+		} while (actual != cabecera.getPrimero());
 	}
 
 	public void eliminar(int elemento) {
